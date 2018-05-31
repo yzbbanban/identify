@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yzbbanban.identify.dao.UserDao">
+    <cache type="com.yzbbanban.identify.utils.RedisCache"></cache>
+    <sql id="Base_Column_List">
+        username, password, nickname, email, role_id,
+         create_time, update_time, login_count, last_login_time
+    </sql>
+    <insert id="addUser" parameterType="com.yzbbanban.identify.entity.User">
+        insert into
+        TUser
+         (username, password, nickname, email, role_id,
+         create_time, update_time, login_count, last_login_time)
+        values
+        (#{username},#{password},#{nickname},#{email},#{role_id},
+        now(),now(),#{loginCount},now());
+    </insert>
+
+
+    <select id="selectUserById" parameterType="int" resultType="com.yzbbanban.identify.entity.User">
+        select
+        <include refid="Base_Column_List"></include>
+        from TUser T where T.id=#{id};
+    </select>
+
+    <update id="updateById" parameterType="com.yzbbanban.identify.entity.User">
+        update TUser
+        set
+        username=#{username}, password=#{password}, nickname=#{nickname},
+         email=#{nickname}, role_id=#{nickname}, update_time=now(), login_count=#{loginCount}, last_login_time=now()
+         where id=#{id};
+    </update>
+
+    <select id="checkUsername" resultType="int" parameterType="string">
+        SELECT COUNT(1) FROM TUser
+        WHERE username=#{username}
+    </select>
+</mapper>
