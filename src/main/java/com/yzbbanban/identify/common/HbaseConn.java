@@ -52,4 +52,15 @@ public class HbaseConn {
     }
 
 
+    public static void closeConn() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+
+        }
+    }
+
 }
