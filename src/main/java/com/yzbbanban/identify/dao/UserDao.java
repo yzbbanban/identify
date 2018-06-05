@@ -15,5 +15,5 @@ public interface UserDao {
     int updateById(User user);
 
     int checkUsername(String username);
-    
+
 }
