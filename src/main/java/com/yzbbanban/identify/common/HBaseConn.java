@@ -12,12 +12,12 @@ import java.io.IOException;
 /**
  * Created by brander on 2018/6/5
  */
-public class HbaseConn {
-    private static final HbaseConn INSTANCE = new HbaseConn();
+public class HBaseConn {
+    private static final HBaseConn INSTANCE = new HBaseConn();
     private static Configuration configuration;
     private static Connection connection;
 
-    private HbaseConn() {
+    private HBaseConn() {
 
         try {
             if (configuration == null) {
@@ -47,7 +47,7 @@ public class HbaseConn {
         return INSTANCE.getConnection();
     }
 
-    public static Table geTable(String tableName) throws IOException {
+    public static Table getTable(String tableName) throws IOException {
         return INSTANCE.getConnection().getTable(TableName.valueOf(tableName));
     }
 

@@ -1,6 +1,6 @@
 package com.yzbbanban.identify;
 
-import com.yzbbanban.identify.common.HbaseConn;
+import com.yzbbanban.identify.common.HBaseConn;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.Table;
 import org.junit.Test;
@@ -13,9 +13,9 @@ import java.io.IOException;
 public class TestHbaseConn {
     @Test
     public void getConnTest() {
-        Connection connection = HbaseConn.getHBaseConn();
+        Connection connection = HBaseConn.getHBaseConn();
         System.out.println(connection.isClosed());
-        HbaseConn.closeConn();
+        HBaseConn.closeConn();
         System.out.println(connection.isClosed());
     }
 
@@ -23,7 +23,7 @@ public class TestHbaseConn {
     @Test
     public void getTableTest() {
         try {
-            Table table = HbaseConn.geTable("US_POTULATION");
+            Table table = HBaseConn.getTable("US_POTULATION");
             System.out.println(table.getName().getNameAsString());
             table.close();
         } catch (IOException ioe) {
